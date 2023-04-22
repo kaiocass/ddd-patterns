@@ -1,3 +1,5 @@
+import Product from "./product";
+
 export default class OrderItem {
   private _id: string;
   private _productId: string;
@@ -39,6 +41,24 @@ export default class OrderItem {
 
   get price(): number {
     return this._price;
+  }
+
+  validate() {
+    if (this._id.length === 0) {
+      throw new Error("Id is required");
+    }
+    if (this._name.length === 0) {
+      throw new Error("Name is required");
+    }
+  }
+
+  changeName(name: string) {
+    this._name = name;
+    this.validate();
+  }
+
+  changePrice(price: number) {
+    this._price = price;
   }
 
   total(): number {
